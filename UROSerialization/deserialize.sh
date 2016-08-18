@@ -1,3 +1,3 @@
 #!/bin/bash
-javac -sourcepath src/ -d bin/ -cp bin/ src/DeserializeExample.java 
-java -cp bin/ DeserializeExample
+javac -sourcepath src/ -d bin/ -cp bin/ src/DeserializeUROExample.java
+java -cp bin/ DeserializeUROExample
