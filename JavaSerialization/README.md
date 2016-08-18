@@ -1,7 +1,7 @@
-SerializeExample:
-javac -sourcepath src/ -d bin/ -cp bin/ src/SerializeExample.java
-java -cp bin/ SerializeExample
+Basic example of serialization.
 
-DeserializeExample:
-javac -sourcepath src/ -d bin/ -cp bin/ src/DeserializeExample.java 
-java -cp bin/ DeserializeExample
+1. Confirm /tmp/cake.ser doesn't exist
+2. Show src/Cake.java and src/SerializeExample.java
+3. Create it with serialize.sh
+4. Show src/DeserializeExample.java
+5. Deserialize /tmp/cake.ser
