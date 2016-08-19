@@ -8,7 +8,7 @@ public class SerializeUROExample {
 
     public static void main(String[] args) throws Exception {
            FileOutputStream fileOut =
-           new FileOutputStream("/tmp/cake.ser");
+           new FileOutputStream("/tmp/uro.ser");
            ObjectOutputStream out =
                    new ObjectOutputStream(fileOut);
            out.writeObject(createObject(6666));
