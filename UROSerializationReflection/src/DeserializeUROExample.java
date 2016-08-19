@@ -6,11 +6,13 @@ public class DeserializeUROExample {
 
     public static void main(String[] args) throws Exception{
 
-        FileInputStream fileIn =
+        FileInputStream fileIn = 
                 new FileInputStream("/tmp/uro.ser");
         ObjectInputStream ois = new ObjectInputStream(fileIn);
-        Object object = ois.readObject();
-        System.out.println("Deserialied something");
+        Cake myCake = (Cake) ois.readObject();
+        System.out.println(String.format(
+                "Found a %s cake with %s icing", 
+                myCake.getSponge(), myCake.getIcing()));
         ois.close();
         fileIn.close();
     }
