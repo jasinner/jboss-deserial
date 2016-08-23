@@ -1,0 +1,22 @@
+To build: "ant compile jar"
+	This will place the output in modules/exploit/main/exploit.jar, ready to run.
+
+To run: "ant run"
+	The EAP server will run the shell command "touch /tmp/vulnerable"
+
+This attacks EAP 6 listening on mcast 230.0.0.4:45688 (default values) on localhost.
+These can be changed in jgroups.xml.
+
+This exploit requires the EJB cluster channel to be running
+(by deploying any EJB with @Clustered to a clustered EAP 6 profile to enable it).
+Note: This does *not* mean that's a requirement for EAP 6 to be exploited,
+that's just for this specific attack vector that goes after EAP's modified 
+Infinispan channel which is one spot that allows the classloader to be manipulated.
+
+There is a quickstart called 'ejb-multi-server' you can use to deployed a clustered EJB
+
+I put all the jars in a single module for convenience.
+The commons-collections jars *must* be in the same module as they are in EAP.
+At least some of the other jars must be in a module that exists in EAP
+(or it will get a "module not found" exception before triggering).
+

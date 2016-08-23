@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<project name="exploit" default="compile">
+	<property name="module" value="modules/sun/jdk/main"/>
+	<property name="dist.file" value="${module}/${ant.project.name}.jar"/>
+
+	<path id="classpath">
+		<pathelement location="."/>
+		<pathelement location="${module}/ysoserial-0.0.5-SNAPSHOT.jar"/>
+		<pathelement location="${module}/jgroups-3.6.8.Final-redhat-2.jar"/>
+		<pathelement location="${module}/jboss-marshalling-1.4.10.Final-redhat-3.jar"/>
+		<pathelement location="jboss-modules.jar"/>
+                <pathelement location="${module}/wildfly-clustering-marshalling-jboss-7.0.0.GA-redhat-2.jar"/>
+                <pathelement location="${module}/wildfly-clustering-marshalling-api-7.0.0.GA-redhat-2.jar"/>
+	</path>
+
+	<target name="clean">
+		<delete>
+			<fileset dir="." includes="**/*.class"/>
+			<fileset dir="." includes="${dist.file}"/>
+		</delete>
+	</target>
+
+	<target name="compile">
+		<javac srcdir="." destdir="."
+				debug="true" debuglevel="lines,vars,source"
+				includeAntRuntime="false">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	<target name="jar">
+		<jar destfile="${dist.file}">
+			<fileset dir=".">
+				<include name="META-INF/**"/>
+				<include name="**/*.class"/>
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="run">
+		<java jar="jboss-modules.jar" fork="true">
+			<jvmarg value="-Djava.net.preferIPv4Stack=true"/>
+			<arg value="-mp"/>
+			<arg value="modules/"/>
+			<arg value="sun.jdk"/>
+		</java>
+	</target>
+</project>
